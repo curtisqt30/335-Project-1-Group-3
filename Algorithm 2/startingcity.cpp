@@ -1,3 +1,7 @@
+// Thi Nguyen
+// ririchiroyo@csu.fullerton.edu
+// Algorithm 2: Greeedy Approach to Hamiltonian Problem
+
 #include <iostream>
 #include <vector>
 #include <sstream>
