@@ -5,34 +5,22 @@ using namespace std;
 
 int findStartingCity(vector<int> &distances, vector<int> &fuel, int mpg)
 {
-  int n = distances.size();
-  int total_fuel = 0;
-  int current_fuel = 0;
+  int cityCount = distances.size();
+  int fuelBalance = 0;
 
-  // Checks if there is enough fuel for 1 pass
-  // Calculates fuel gained from city i and subtracts distance to next city
-  // Value added to total fuel
-  for (int i = 0; i < n; i++)
-  {
-    total_fuel += fuel[i] * mpg - distances[i];
-  }
-
-  if (total_fuel < 0)
-    return -1; // If total fuel is less than 0; no solution
 
   // Finding the starting city
   int start_city = 0;
-  total_fuel = 0;
 
-  for (int i = 0; i < n; i++)
+  for (int i = 0; i < cityCount; i++)
   { // Iterate over each city
-    total_fuel += fuel[i] * mpg - distances[i];
+    fuelBalance += (fuel[i] * mpg) - distances[i];
 
     // If total_fuel is ever negative, reset starting city to next
-    if (total_fuel < 0)
+    if (fuelBalance < 0)
     {
       start_city = i + 1;
-      total_fuel = 0;
+      fuelBalance = 0;
     }
   }
 
@@ -75,7 +63,8 @@ int main()
 
   // Call the function to find the starting city
   int starting_city = findStartingCity(distances, fuel, mpg);
-  cout << "Starting City: " << starting_city << endl;
+
+  cout << "Preferred Starting City: " << starting_city << endl;
 
   return 0;
 }
